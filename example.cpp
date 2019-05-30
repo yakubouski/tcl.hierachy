@@ -1,6 +1,6 @@
 #include <cstdio>
-#include "include/hierarchy-list.h"
 #include <string>
+#include "include/hierarchy-list.h"
 
 struct node {
 	int type;
