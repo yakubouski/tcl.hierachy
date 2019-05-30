@@ -1,13 +1,17 @@
 # Template class library module
 C++ hierarchy template class library
 
-## hierarchy_list is hierarchy with custom branches list and custom type leaf
+## hierarchy classes
+- hierarchy_list - hierarchical list
+- hierarchy_tree - hierarchical tree, with lookup by nodes
+
+### hierarchy_list is hierarchy with custom branches list and custom type leaf
 ![hieracy-list-struct](readme/hierarchy-list-struct.png)
 
 - branch - is it custom type value (string, decimal or custom struct )
 - leaf - is it value linked with branch node
 
-### hierarchy_list example
+#### hierarchy_list example
 ```c++
 
 struct node {
