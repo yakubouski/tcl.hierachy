@@ -8,7 +8,7 @@ C++ hierarchy template class library
 - leaf - is it value linked with branch node
 
 ### hierarchy_list example
-```c++14
+```c++
 
 struct node {
 	int type;
