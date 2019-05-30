@@ -43,6 +43,9 @@ int main()
 	it.emplace_branch("Sub Test 2.2.3");
 
 	for (auto&& ti : list) {
+		// ti.branch - contain ref to std::string value
+		// ti.leaf - contain ref to node value
+		// ti.path - contain full parent branches path 
 		printf("%*s%s\n", ti.path.size()*4, "", ti.branch.c_str());
 	}
     return 0;
