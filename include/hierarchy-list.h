@@ -37,12 +37,22 @@ namespace tcl {
 			typename node::type_branch* first;
 			typename node::type_leaf* second;
 
+			/*
+			* Emplace back new branch in to current node.
+			* Arguments will be forwarded to <TypeBranch> constructor
+			* @return insert_iterator
+			*/
 			template<typename ... BRANCH_CTOR_ARG>
 			decltype(auto) emplace_branch(BRANCH_CTOR_ARG&& ... args) const {
 				_node->_chds.emplace_back(args...);
 				return insert_iterator(&_node->_chds.back());
 			}
 
+			/*
+			* Emplace\assign value to leaf
+			* Arguments will be forwarded to <TypeLeaf> constructor
+			* @return TypeLeaf&
+			*/
 			template<typename ... LEAF_CTOR_ARG>
 			typename node::type_leaf& emplace_leaf(LEAF_CTOR_ARG&& ... args) const {
 				_node->_leaf = TypeLeaf(std::forward<LEAF_CTOR_ARG&&>(args)...);
@@ -115,24 +125,46 @@ namespace tcl {
 		hierarchy_list() { ; }
 		~hierarchy_list() { ; }
 
+		/*
+		* Emplace back new branch to root node. 
+		* Arguments will be forwarded to <TypeBranch> constructor
+		* @return insert_iterator
+		*/
 		template<typename ... BRANCH_CTOR_ARG>
 		decltype(auto) emplace_branch(BRANCH_CTOR_ARG&& ... args) const {
 			childs._chds.emplace_back(std::forward<BRANCH_CTOR_ARG&&>(args)...);
 			return iiterator(&childs._chds.back());
 		}
 
+		/*
+		* Emplace\assign value to leaf
+		* Arguments will be forwarded to <TypeLeaf> constructor
+		* @return TypeLeaf& 
+		*/
 		template<typename ... LEAF_CTOR_ARG>
 		typename node::type_leaf& emplace_leaf(LEAF_CTOR_ARG&& ... args) const {
 			childs._leaf = TypeLeaf(std::forward<LEAF_CTOR_ARG&&>(args)...);
 			return childs._leaf;
 		}
 
+		/*
+		* Check is empty
+		*/
 		inline bool empty() { return childs._chds.empty(); }
 		
+		/*
+		* Remove all elements from list
+		*/
 		inline void clear() { childs._chds.clear(); childs._brch = TypeBranch();  childs._leaf = TypeLeaf(); }
 
+		/*
+		* Retrive traversal iterator for enumerate all branches and leaf 
+		*/
 		inline decltype(auto) begin() { return iterator(childs); }
 
+		/*
+		* Retrive traversal last item iterator
+		*/
 		inline decltype(auto) end() { return iterator(childs); }
 	};
 }
