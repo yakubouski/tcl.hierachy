@@ -37,6 +37,8 @@ namespace tcl {
 			typename node::type_branch* first;
 			typename node::type_leaf* second;
 
+			insert_iterator() : _node(nullptr), first(nullptr), second(nullptr) { ; }
+
 			/*
 			* Emplace back new branch in to current node.
 			* Arguments will be forwarded to <TypeBranch> constructor
