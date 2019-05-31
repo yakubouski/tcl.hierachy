@@ -90,7 +90,7 @@ namespace tcl {
 
 			~traverse_iterator() { ; }
 
-			decltype(auto) operator * () {
+			decltype(auto) operator * () const {
 				return tuple(
 					it_tree.front().first->_brch, it_tree.front().first->_leaf, it_path
 				);
@@ -113,7 +113,7 @@ namespace tcl {
 				return *this;
 			}
 
-			inline bool operator != (const traverse_iterator&) {
+			inline bool operator != (const traverse_iterator&) const {
 				return !it_tree.empty() && it_tree.front().first != it_tree.front().second;
 			}
 		};
@@ -152,7 +152,7 @@ namespace tcl {
 		/*
 		* Check is empty
 		*/
-		inline bool empty() { return childs._chds.empty(); }
+		inline bool empty() const { return childs._chds.empty(); }
 		
 		/*
 		* Remove all elements from list
@@ -162,11 +162,11 @@ namespace tcl {
 		/*
 		* Retrive traversal iterator for enumerate all branches and leaf 
 		*/
-		inline decltype(auto) begin() { return iterator(childs); }
+		inline decltype(auto) begin() const { return iterator(childs); }
 
 		/*
 		* Retrive traversal last item iterator
 		*/
-		inline decltype(auto) end() { return iterator(childs); }
+		inline decltype(auto) end() const { return iterator(childs); }
 	};
 }
