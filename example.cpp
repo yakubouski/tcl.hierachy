@@ -1,6 +1,6 @@
 #include <cstdio>
 #include <string>
-#include "include/hierarchy-list.h"
+#include "include/chierarchylist.h"
 
 struct node {
 	int type;
@@ -16,7 +16,7 @@ struct node {
 
 int main()
 {
-	tcl::hierarchy_list<std::string, node> list;
+	chierarchy_list<std::string, node> list;
 
 	auto it = list.emplace_branch("Test 1");
 
